@@ -1,11 +1,11 @@
 CREATE DEFINER=`admin`@`%` PROCEDURE `filterbyDate`(IN minDate timestamp, IN maxDate timestamp)
 BEGIN
 	SELECT *
-	FROM test_description 
+	FROM test_description 	
 		INNER JOIN test_results ON test_description.dut_no=test_results.dut_no
-        INNER JOIN actuate_time ON test_description.dut_no=actuate_time.dut_no
+		INNER JOIN actuate_time ON test_description.dut_no=actuate_time.dut_no
         INNER JOIN coil_resistance ON test_description.dut_no=coil_resistance.dut_no
-        INNER JOIN crs ON test_description.dut_no=test_crs.dut_no
+        INNER JOIN crs ON test_description.dut_no=crs.dut_no
         INNER JOIN dcr ON test_description.dut_no=dcr.dut_no
         INNER JOIN dcrpk ON test_description.dut_no=dcrpk.dut_no
         INNER JOIN diode ON test_description.dut_no=diode.dut_no
@@ -23,6 +23,7 @@ BEGIN
         INNER JOIN scr ON test_description.dut_no=scr.dut_no
         INNER JOIN shorts ON test_description.dut_no=shorts.dut_no
         INNER JOIN transfer_time ON test_description.dut_no=transfer_time.dut_no
-        
-        WHERE test_description.date_time BETWEEN minDate AND maxDate;
+
+		WHERE test_description.date_time BETWEEN minDate AND maxDate;
+
 END
